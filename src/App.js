@@ -7,12 +7,8 @@ class TodoList extends Component {
       <div>
       {this.props.todos.map((todo, i) => {
           return (
-          <TodoItem 
-            key={i} 
-            index= {i}
-            todo={todo}
-            toggleCheck={this.props.toggleCheck}
-         />)
+          <TodoItem key={i} index= {i} todo={todo} toggleCheck={this.props.toggleCheck} />
+        )
       })
       }
       </div>
@@ -37,10 +33,7 @@ class InputFields extends Component {
   render() {
     return (
       <div>
-      <input 
-        onChange={(event) => this.props.handleChange(event)}
-        value={this.props.inputValue}
-      />
+      <input onChange={(event) => this.props.handleChange(event)} value={this.props.inputValue} />
       <button onClick={(event) => this.props.addNew(event)}>Add</button>
       </div>
     );
@@ -56,7 +49,7 @@ state = {
 handleChange = (event) => {
   console.log(event.target.value)
   this.setState({
-      inputValue: event.target.value
+    inputValue: event.target.value
   })
 }
 addNew = (event) => {
@@ -95,16 +88,9 @@ filterChecked = () => {
     return (
       <div className="App">
       <h2>TODO list</h2>
-      <InputFields 
-         inputValue = {this.state.inputValue} 
-         handleChange={this.handleChange}
-         addNew={this.addNew}
-      />
+      <InputFields inputValue = {this.state.inputValue} handleChange={this.handleChange} addNew={this.addNew} />
       <p> { todos.length } remaining out {this.state.todos.length}</p>
-      <TodoList 
-        toggleCheck= {this.toggleCheck}
-        todos= {this.state.todos}
-      />
+      <TodoList toggleCheck= {this.toggleCheck} todos= {this.state.todos} />
             <style> {`
             .is-done {
                 text-decoration: line-through;
