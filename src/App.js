@@ -20,7 +20,7 @@ class TodoItem extends Component {
   render() {
     return (
       <div>
-      <li className={this.props.todo.done ? "is-done" : "not-done"} onClick={() => this.props.toggleCheck(this.props.index)}>
+      <li className={this.props.todo.isChecked ? "is-done" : "not-done"} onClick={() => this.props.toggleCheck(this.props.index)}>
          {this.props.todo.value}
       </li>
       </div>
@@ -45,24 +45,28 @@ class App extends Component {
 state = {
     inputValue: '',
     todos: []
-}  
+}
+//Set state equal to the value given in the input
 handleChange = (event) => {
-  console.log(event.target.value)
   this.setState({
     inputValue: event.target.value
   })
 }
+//Add new todoitem to the array
 addNew = (event) => {
-  console.log("todo added")
+  console.log("todo added:", this.state.inputValue)
+  //Alert if empty
   if (this.state.inputValue === '') {
     alert("Empty todo")
   }
+  //Create new todo if not empty
   else {
   const newTodo = {
     value: this.state.inputValue,
-    done: false
+    isChecked: false
   }
   const todos = this.state.todos; 
+  //Push new new to array
   todos.push(newTodo)
   this.setState({
     todos,
@@ -70,17 +74,19 @@ addNew = (event) => {
   })
 }
 }
+//Toggle the value of the clicked object
 toggleCheck = (index) => {
-  console.log("toggled", index)
+  console.log("toggled")
   const todos = this.state.todos;
-  todos[index].done = !todos[index].done;
+  todos[index].isChecked = !todos[index].isChecked;
   this.setState({ todos })
 }
+//Function for checking which todos are remaining
 filterChecked = () => {
   var checkedTodos = this.state.todos.filter(function (checked) {
-    return checked.done === false
+    return checked.isChecked === false
   })
-  console.log(checkedTodos)
+  //console.log(checkedTodos)
   return checkedTodos;
 }
   render() {
@@ -97,9 +103,6 @@ filterChecked = () => {
             }
             li {
               cursor: pointer;
-            }
-            .clear {
-              margin-top: 25px;
             }
          `}
          </style>    
