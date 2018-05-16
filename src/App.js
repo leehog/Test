@@ -77,9 +77,9 @@ addNew = (event) => {
 //Toggle the value of the clicked object
 toggleCheck = (index) => {
   console.log("toggled")
-  const todos = this.state.todos;
-  todos[index].isChecked = !todos[index].isChecked;
-  this.setState({ todos })
+  const check = this.state.todos;
+  check[index].isChecked = !check[index].isChecked;
+  this.setState({ check })
 }
 //Function for checking which todos are remaining
 filterChecked = () => {
