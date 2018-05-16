@@ -62,11 +62,11 @@ addNew = (event) => {
   //Create new todo if not empty
   else {
   const newTodo = {
-    value: this.state.inputValue,
-    isChecked: false
+    value: this.state.inputValue, 
+    isChecked: false //False by default
   }
   const todos = this.state.todos; 
-  //Push new new to array
+  //Push new item to array
   todos.push(newTodo)
   this.setState({
     todos,
@@ -78,8 +78,11 @@ addNew = (event) => {
 toggleCheck = (index) => {
   console.log("toggled")
   const check = this.state.todos;
+  console.log(this.state.todos) //isChecked state
   check[index].isChecked = !check[index].isChecked;
-  this.setState({ check })
+  this.setState({ 
+    check 
+  })
 }
 //Function for checking which todos are remaining
 filterChecked = () => {
